@@ -32,6 +32,9 @@ services:
       - ./docker-compose/mysql:/docker-entrypoint-initdb.d
     networks:
       - demo-site
+    ports:
+      - 3306:3306
+
   nginx:
     image: nginx:1.21-alpine
     container_name: demo-site-nginx
