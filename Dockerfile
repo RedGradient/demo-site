@@ -4,6 +4,7 @@ ARG user
 ARG uid
 
 RUN apt update && apt install -y \
+npm \
 git \
 curl \
 libpng-dev \
