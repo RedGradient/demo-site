@@ -19,8 +19,9 @@ class CreatePostsTable extends Migration
             $table->text('title');
             $table->text('description');
             $table->text('body');
-            $table->string('image')->default('/resources/images/default_image.jpg');
-            $table->foreignId('rubric_id');
+            $table->string('image')->nullable(true);
+            $table->foreignId('rubric_id')->onDelete('cascade');;
+            $table->foreignId('user_id');
 
             $table->timestamps();
         });
