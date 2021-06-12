@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\File;
 class PostController extends Controller
 {
     public function like(Request $request) {
+
         $user_id = Auth::user()->id;
         $post_id = $request->get('post_id');
 
@@ -131,6 +132,7 @@ class PostController extends Controller
         $post->rubric_id = $rubric;
 
         $post->save();
+        return redirect()->route('home');
     }
 
     /**
@@ -202,7 +204,8 @@ class PostController extends Controller
         $post->user_id = Auth::user()->id;
         $post->rubric_id = $rubric;
 
-        $post->save();
+        $post->update();
+        return redirect()->route('home');
     }
 
     /**
@@ -219,6 +222,6 @@ class PostController extends Controller
         File::delete($path);
 
         $post->delete();
-        return redirect('/');
+        return redirect()->route('home');
     }
 }
