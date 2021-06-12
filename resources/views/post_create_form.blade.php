@@ -11,32 +11,6 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-9">
-{{--                <p class="form-label">Заголовок</p>--}}
-{{--                <input id="title" class="form-control">--}}
-{{--                <br>--}}
-{{--                <p class="form-label">Краткое описание</p>--}}
-{{--                <input id="description" class="form-control">--}}
-{{--                <br>--}}
-{{--                <p class="form-label">Текст</p>--}}
-{{--                <div id="body" class="form-control" contenteditable="true"></div>--}}
-{{--                <br>--}}
-{{--                <p class="form-label">Рубрика</p>--}}
-{{--                <select class="custom-select custom-select-sm">--}}
-{{--                    @foreach($rubrics as $rubric)--}}
-{{--                        --}}{{--                    <option selected>Open this select menu</option>--}}
-{{--                        <option value="{{ $rubric->id }}">{{ $rubric->title }}</option>--}}
-{{--                    @endforeach--}}
-{{--                </select>--}}
-{{--                <br>--}}
-{{--                <p class="form-label">Вставьте изображение</p>--}}
-{{--                <div class="custom-file">--}}
-{{--                    <input type="file" class="custom-file-input" id="customFile">--}}
-{{--                    <label class="custom-file-label" for="customFile">Выберите изображение</label>--}}
-{{--                </div>--}}
-{{--                <br>--}}
-{{--                <button class="btn btn-success" onclick="uploadPost()" type="button" name="button">Опубликовать</button>--}}
-
-
                 <form id="post_create_form" method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
                     @csrf
                     <p class="form-label">Заголовок</p>

@@ -19,7 +19,7 @@
                         <div class="col">
 
                             <!-- Заголовок -->
-                            <div class="row border">
+                            <div class="row">
                                 <div class="col">
                                     <a href="{{ route('posts.show', $post->id) }}">{{ $post->title }}</a>
                                 </div>
@@ -34,14 +34,14 @@
                             </div>
                             <!--  -->
 
-                            <div class="row border">
+                            <div class="row">
                                 <div class="col">
             {{--                        <span class="text-secondary">Июн 8`21 в 12:35</span>--}}
                                     <span class="text-secondary">{{ $post->created_at }}</span>
                                 </div>
                                 <div class="col text-end">
 
-                                    <p>Нравится: {{ $post->likes()->count() }}</p>
+                                    <span class="text-secondary">Нравится: {{ $post->likes()->count() }}</span>
 
                                 </div>
                             </div>
@@ -53,24 +53,36 @@
 
                 @endforeach
 
-                    <span class="">{{ $posts->links() }}</span>
+                <span class="p-2">{{ $posts->links() }}</span>
+
             </div>
 
-            <div class="col-3">
+            <div class="col-1"></div>
+
+            <div class="col-2">
 
                 <div class="d-grid gap-2">
                     <div class="btn-group">
-                        <a id="date" class="btn btn-info d-block" data-bs-toggle="button" aria-pressed="true">Дата</a>
-                        <a id="popularity" class="btn btn-info d-block" data-bs-toggle="button" aria-pressed="true">Популярность</a>
+                        <input type="radio" class="btn-check" name="sort" id="date" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="date">Дата</label>
+
+                        <input type="radio" class="btn-check" name="sort" id="popularity" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="popularity">Популярность</label>
                     </div>
                     <div class="btn-group">
-                        <a id="asc" class="btn btn-info d-block" data-bs-toggle="button" aria-pressed="true">Возрастание</a>
-                        <a id="desc" class="btn btn-info d-block" data-bs-toggle="button" aria-pressed="true">Убывание</a>
+                        <input type="radio" class="btn-check" name="order" id="desc" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="desc">Возрастание</label>
+
+                        <input type="radio" class="btn-check" name="order" id="asc" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="asc">Убывание</label>
                     </div>
                     <a href="" id="sort" class="btn btn-primary d-block">Сортировать</a>
                 </div>
 
             </div>
+
+
+
         </div>
 
     </div>
