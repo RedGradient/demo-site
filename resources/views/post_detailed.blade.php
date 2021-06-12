@@ -1,6 +1,7 @@
 @extends('base')
 
 @section('head')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 @endsection
 
@@ -59,5 +60,6 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="{{ asset('js/likeIt.js') }}"></script>
 @endsection
