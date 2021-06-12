@@ -39,7 +39,7 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-        // значения по-умолчанию
+        // значения по-умолчанию, на случай, если в GET-ключей нет
         $sort = 'created_at';
         $order = 'desc';
         $posts = Post::orderBy($sort, $order)->paginate(6);
@@ -47,35 +47,28 @@ class PostController extends Controller
         // если в GET-запросе есть ключи
         if ($request->all()) {
             // если есть ключ rubric
-            if ($rubric = $request->get('rubric')) {
+            if ($request->get('rubric')) {
+                $rubric = $request->get('rubric');
                 $rubric_id = Rubric::where('title', '=', $rubric)->first()->id;
-                switch ($request->get('order')) {
-                    case 'desc':
-                        $order = 'desc';
-                        break;
-                    case 'asc':
-                        $order = 'asc';
-                        break;
-                }
-                switch ($request->get('sort')) {
-                    case 'date':
-                        $sort = 'created_at';
-                        $posts = Post::where('rubric_id', '=', $rubric_id)->orderBy($sort, $order)->paginate(6);
-                        break;
-                    case 'popularity':
-                        $posts = Post::where('rubric_id', '=', $rubric_id)->withCount('likes')->orderBy('likes_count', $order)->paginate(6);
-                        break;
+                // если кроме rubric есть правила сортировки
+                if ($request->get('sort') && $request->get('order')) {
+                    $order = $request->get('order');
+                    switch ($request->get('sort')) {
+                        case 'date':
+                            $sort = 'created_at';
+                            $posts = Post::where('rubric_id', '=', $rubric_id)->orderBy($sort, $order)->paginate(6);
+                            break;
+                        case 'popularity':
+                            $posts = Post::where('rubric_id', '=', $rubric_id)->withCount('likes')->orderBy('likes_count', $order)->paginate(6);
+                            break;
+                    }
+                // если правил сортировки нет
+                } else {
+                    $posts = Post::where('rubric_id', '=', $rubric_id)->orderBy('created_at', 'desc')->paginate(6);
                 }
             // если ключа rubric нет
             } else {
-                switch ($request->get('order')) {
-                    case 'desc':
-                        $order = 'desc';
-                        break;
-                    case 'asc':
-                        $order = 'asc';
-                        break;
-                }
+                $order = $request->get('order');
                 switch ($request->get('sort')) {
                     case 'date':
                         $sort = 'created_at';
@@ -85,14 +78,10 @@ class PostController extends Controller
                         $posts = Post::withCount('likes')->orderBy('likes_count', $order)->paginate(6);
                         break;
                 }
-
-                $posts = Post::orderBy($sort, $order)->paginate(6);
             }
         }
 
-
         $like_class = Like::class;
-
 
         return view('post_list', [
             'posts' => $posts,
@@ -155,8 +144,10 @@ class PostController extends Controller
         $author = User::find(Post::find($id)->user_id)->name;
         $likes = Like::where('post_id', '=', $post->id)->count();
         $rubric = Rubric::where('post_id', '=', $post->id);
+        $user_id = Auth::user()->id;
 
         return view('post_detailed', [
+            'user_id' => $user_id,
             'post' => $post,
             'author' => $author,
             'rubric' => $rubric,
