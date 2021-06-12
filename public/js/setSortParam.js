@@ -1,21 +1,39 @@
 function setSortParam(e) {
-    let name = e.getAttribute('name');
-    let id = e.getAttribute('id');
+    let sort = document.getElementById('date').checked ? 'sort=date' : 'sort=popularity';
+    let order = document.getElementById('asc').checked ? 'order=asc' : 'order=desc';
 
     let sort_btn = document.getElementById('sort');
-    let href = sort_btn.getAttribute('href');
 
-    let params = href.split('?')[1].split('&');
+    // словарь с параметрами
+    let params_dict = {
+        'page': '',
+        'rubric': '',
+        'sort': sort,
+        'order': order,
+    };
 
-    switch (name) {
-        case 'sort':
-            params[0] = name + '=' + id;
-            break;
-        case 'order':
-            params[1] = name + '=' + id;
+    // заполняем словарь
+    if (window.location.href.includes('?')) {
+        let params_array = window.location.href.split('?')[1].split('&');
+        for (i = 0; i < params_array.length; i++) {
+            if (params_array[i].includes('rubric')) params_dict['rubric'] = params_array[i];
+            if (params_array[i].includes('sort')) params_dict['sort'] = params_array[i];
+            if (params_array[i].includes('order')) params_dict['order'] = params_array[i];
+            if (params_array[i].includes('page')) params_dict['page'] = params_array[i];
+        }
     }
 
+    // console.log(params_dict['rubric'])
+    // console.log(params_dict['sort'])
+    // console.log(params_dict['order'])
+    // console.log(params_dict['page'])
 
-    href = '?' + params[0] + '&' + params[1];
+    let href = '/?';
+
+    for (const[param, value] of Object.entries(params_dict)) {
+        if (value) href += value + '&';
+    }
+    href[href.length - 1] = '';
+
     sort_btn.setAttribute('href', href);
 }
