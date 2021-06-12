@@ -10,7 +10,8 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-9">
-                <form id="post_create_form" method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
+                <form id="post_create_form" method="POST" action="{{ route('posts.update', $post->id) }}" enctype="multipart/form-data">
+                    @method('PUT')
                     @csrf
                     <p class="form-label">Заголовок</p>
                     <input id="title" name="title" class="form-control" value="{{ $post->title }}">
