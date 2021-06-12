@@ -6,7 +6,7 @@
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="/?rubric=Бизнес" class="nav-link px-2 link-secondary">Бизнес</a></li>
+                <li><a href="/?rubric=Бизнес" class="nav-link px-2 link-dark">Бизнес</a></li>
                 <li><a href="/?rubric=Политика" class="nav-link px-2 link-dark">Политика</a></li>
                 <li><a href="/?rubric=Экономика" class="nav-link px-2 link-dark">Экономика</a></li>
                 <li><a href="/?rubric=Космос" class="nav-link px-2 link-dark">Космос</a></li>
