@@ -15,7 +15,8 @@ Route::resource('/posts', PostController::class);
 //Route::redirect('/posts', '/');
 Route::get('/posts/create', [PostController::class, 'create'])->middleware('auth')->name('posts.create');
 
-
+Route::post('/like', [PostController::class, 'like'])->middleware('auth');
+Route::post('/unlike', [PostController::class, 'unlike'])->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
