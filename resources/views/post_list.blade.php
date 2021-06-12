@@ -36,7 +36,6 @@
 
                             <div class="row">
                                 <div class="col">
-            {{--                        <span class="text-secondary">Июн 8`21 в 12:35</span>--}}
                                     <span class="text-secondary">{{ $post->created_at }}</span>
                                 </div>
                                 <div class="col text-end">
@@ -60,31 +59,28 @@
             <div class="col-1"></div>
 
             <div class="col-2">
-
                 <div class="d-grid gap-2">
                     <div class="btn-group">
-                        <input type="radio" class="btn-check" name="sort" id="date" autocomplete="off" checked>
+                        <input onclick="setSortParam(this)" type="radio" class="btn-check" name="sort" id="date" autocomplete="off" checked>
                         <label class="btn btn-outline-primary" for="date">Дата</label>
 
-                        <input type="radio" class="btn-check" name="sort" id="popularity" autocomplete="off">
+                        <input onclick="setSortParam(this)" type="radio" class="btn-check" name="sort" id="popularity" autocomplete="off">
                         <label class="btn btn-outline-primary" for="popularity">Популярность</label>
                     </div>
                     <div class="btn-group">
-                        <input type="radio" class="btn-check" name="order" id="desc" autocomplete="off" checked>
-                        <label class="btn btn-outline-primary" for="desc">Возрастание</label>
+                        <input onclick="setSortParam(this)" type="radio" class="btn-check" name="order" id="asc" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="asc">Возрастание</label>
 
-                        <input type="radio" class="btn-check" name="order" id="asc" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="asc">Убывание</label>
+                        <input onclick="setSortParam(this)" type="radio" class="btn-check" name="order" id="desc" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="desc">Убывание</label>
                     </div>
-                    <a href="" id="sort" class="btn btn-primary d-block">Сортировать</a>
+                    <a href="/posts?sort=date&order=desc" id="sort" class="btn btn-primary d-block">Сортировать</a>
                 </div>
-
             </div>
-
-
-
         </div>
 
     </div>
+
+    <script src="{{ asset('js/setSortParam.js') }}"></script>
 
 @endsection

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
@@ -11,10 +12,28 @@ use App\Models\Like;
 use App\Models\Rubric;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 
 class PostController extends Controller
 {
+    public function like(Request $request) {
+        $user_id = Auth::user()->id;
+        $post_id = $request->get('post_id');
+
+        $like = new Like;
+        $like->user_id = $user_id;
+        $like->post_id = $post_id;
+        $like->save();
+    }
+
+    public function unlike(Request $request) {
+        $user_id = Auth::user()->id;
+        $post_id = $request->get('post_id');
+
+        Like::where('post_id', '=', $post_id)->where('user_id', '=', $user_id)->delete();
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -27,11 +46,9 @@ class PostController extends Controller
 
         // если в GET-запросе есть ключи
         if ($request->all()) {
-            // если есть ключ filter
+            // если есть ключ rubric
             if ($rubric = $request->get('rubric')) {
-                print_r($request->all());
-                $rubric_id = Rubric::where('title', '=', $rubric)->id;
-                print_r($rubric_id);
+                $rubric_id = Rubric::where('title', '=', $rubric)->first()->id;
                 switch ($request->get('order')) {
                     case 'desc':
                         $order = 'desc';
@@ -49,7 +66,7 @@ class PostController extends Controller
                         $posts = Post::where('rubric_id', '=', $rubric_id)->withCount('likes')->orderBy('likes_count', $order)->paginate(6);
                         break;
                 }
-            // если ключа filter нет
+            // если ключа rubric нет
             } else {
                 switch ($request->get('order')) {
                     case 'desc':
@@ -59,7 +76,6 @@ class PostController extends Controller
                         $order = 'asc';
                         break;
                 }
-
                 switch ($request->get('sort')) {
                     case 'date':
                         $sort = 'created_at';
@@ -205,8 +221,13 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        dd($id);
         $post = Post::find($id);
+
+        // удаление картинки
+        $path = '/var/www/public/images/'.$post->image;
+        File::delete($path);
+
         $post->delete();
+        return redirect('/');
     }
 }
