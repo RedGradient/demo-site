@@ -146,10 +146,14 @@ class PostController extends Controller
         $author = User::find(Post::find($id)->user_id)->name;
         $likes = Like::where('post_id', '=', $post->id)->count();
         $rubric = Rubric::where('post_id', '=', $post->id);
-        $user_id = Auth::user()->id;
+//        try {
+//            $user_id = Auth::user()->id;
+//        } catch (e) {
+//            $user_id = null;
+//        }
 
         return view('post_detailed', [
-            'user_id' => $user_id,
+//            'user_id' => $user_id,
             'post' => $post,
             'author' => $author,
             'rubric' => $rubric,
