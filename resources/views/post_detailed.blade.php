@@ -20,6 +20,7 @@
 
                         <p>{{ $post->body }}</p>
                         <p>Автор: {{ $author }}</p>
+                        <p>{{ $post->created_at }}</p>
 
                         <input type="checkbox" class="btn-check" name="sort" id="like">
                         <label onclick="likeIt()" class="btn btn-outline-primary" id="like_label" for="like"><i class="fas fa-heart"></i> <span id="like_count">{{ $post->likes()->count() }}</span></label>
