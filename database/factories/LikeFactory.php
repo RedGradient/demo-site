@@ -26,7 +26,7 @@ class LikeFactory extends Factory
     {
         return [
             'user_id' => User::inRandomOrder()->first()->id,
-            'post_id' => Rubric::inRandomOrder()->first()->id
+            'post_id' => Post::inRandomOrder()->first()->id
         ];
     }
 }
