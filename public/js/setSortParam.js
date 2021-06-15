@@ -16,9 +16,9 @@ function setSortParam(e) {
     if (window.location.href.includes('?')) {
         let params_array = window.location.href.split('?')[1].split('&');
         for (i = 0; i < params_array.length; i++) {
-            if (params_array[i].includes('rubric')) params_dict['rubric'] = params_array[i];
-            if (params_array[i].includes('sort')) params_dict['sort'] = params_array[i];
-            if (params_array[i].includes('order')) params_dict['order'] = params_array[i];
+            if (params_array[i].includes('rubric')) params_dict['rubric'] = params_array[i]; else
+            if (params_array[i].includes('sort')) params_dict['sort'] = params_array[i]; else
+            if (params_array[i].includes('order')) params_dict['order'] = params_array[i]; else
             if (params_array[i].includes('page')) params_dict['page'] = params_array[i];
         }
     }
