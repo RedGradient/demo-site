@@ -61,21 +61,20 @@
             <div class="col-2">
                 <div class="d-grid gap-2">
                     <div class="btn-group">
-                        <input onclick="setSortParam(this)" type="radio" class="btn-check" name="sort" id="date" autocomplete="off" checked>
+                        <input onclick="setSortParam()" type="radio" class="btn-check" name="sort" id="date" autocomplete="off" checked>
                         <label class="btn btn-outline-primary" for="date">Дата</label>
 
-                        <input onclick="setSortParam(this)" type="radio" class="btn-check" name="sort" id="popularity" autocomplete="off">
+                        <input onclick="setSortParam()" type="radio" class="btn-check" name="sort" id="popularity" autocomplete="off">
                         <label class="btn btn-outline-primary" for="popularity">Популярность</label>
                     </div>
                     <div class="btn-group">
-                        <input onclick="setSortParam(this)" type="radio" class="btn-check" name="order" id="asc" autocomplete="off">
+                        <input onclick="setSortParam()" type="radio" class="btn-check" name="order" id="asc" autocomplete="off">
                         <label class="btn btn-outline-primary" for="asc">Возрастание</label>
 
-                        <input onclick="setSortParam(this)" type="radio" class="btn-check" name="order" id="desc" autocomplete="off" checked>
+                        <input onclick="setSortParam()" type="radio" class="btn-check" name="order" id="desc" autocomplete="off" checked>
                         <label class="btn btn-outline-primary" for="desc">Убывание</label>
                     </div>
                     <a href="@if(str_contains(Request::fullUrl(), '?'))&sort=date&order=desc @else?sort=date&order=desc @endif" id="sort" class="btn btn-primary">Сортировать</a>
-{{--                    <a href="" id="sort">sort</a>--}}
                 </div>
             </div>
 
