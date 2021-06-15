@@ -41,33 +41,5 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-{{--    <script src="{{ asset('js/uploadPost.js') }}"></script>--}}
-
-{{--    <script>--}}
-{{--        function uploadPost() {--}}
-{{--            let title = $('#title').html();--}}
-{{--            let body = $('#body').html();--}}
-{{--            let rubric = $('#rubric').html();--}}
-{{--            let description = $('#description').html();--}}
-
-{{--            $.ajaxSetup({--}}
-{{--                headers: {--}}
-{{--                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
-{{--                }--}}
-{{--            });--}}
-
-{{--            $.ajax({--}}
-{{--                type: "POST",--}}
-{{--                url: "/posts",--}}
-{{--                data: {--}}
-{{--                    "title": title,--}}
-{{--                    "body": body,--}}
-{{--                    "description": description,--}}
-{{--                    "rubric": rubric,--}}
-{{--                }--}}
-{{--            });--}}
-{{--        }--}}
-{{--    </script>--}}
-
 
 @endsection
