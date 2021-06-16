@@ -27,7 +27,7 @@ class PostFactory extends Factory
             'title' => $this->faker->words(5, true),
             'description' => $this->faker->words(20, true),
             'body' => $this->faker->paragraphs(6, true),
-            'image' => 'default.jpg',
+            'image' => 'post_image.jpg',
             'rubric_id' => Rubric::inRandomOrder()->first()->id,
             'user_id' => User::inRandomOrder()->first()->id
         ];
