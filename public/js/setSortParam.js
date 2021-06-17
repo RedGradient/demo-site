@@ -12,6 +12,8 @@ function showCurrentSort() {
         for (const[param, value] of Object.entries(params)) {
             document.getElementById(value).click();
         }
+    } else {
+        document.getElementById('date').click();
     }
 }
 
