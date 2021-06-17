@@ -17,7 +17,7 @@
 
         @guest
             <a href="{{ route('register') }}" class="btn btn-outline-primary m-1" role="button">Регистрация</a>
-            <a href="{{ route('login') }}" class="btn btn-outline-info m-1">Войти</a>
+            <a href="{{ route('login') }}" class="btn btn-info m-1">Войти</a>
         @endguest
 
         @auth
