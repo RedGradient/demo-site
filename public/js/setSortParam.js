@@ -1,39 +1,39 @@
+document.addEventListener("DOMContentLoaded", function(){
+    // setSortParam();
+    showCurrentSort();
+});
+
+
+function showCurrentSort() {
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const params = Object.fromEntries(urlSearchParams.entries());
+
+    if (window.location.href.includes('sort')) {
+        for (const[param, value] of Object.entries(params)) {
+            document.getElementById(value).click();
+        }
+    }
+}
+
+
 function setSortParam() {
-    let sort = document.getElementById('date').checked ? 'sort=date' : 'sort=popularity';
-    let order = document.getElementById('asc').checked ? 'order=asc' : 'order=desc';
+
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const params = Object.fromEntries(urlSearchParams.entries());
 
     let sort_btn = document.getElementById('sort');
 
-    // словарь с параметрами
-    let params_dict = {
-        'page': '',
-        'rubric': '',
-        'sort': sort,
-        'order': order,
-    };
+    let sort = document.getElementById('date').checked ? 'date' : 'popularity';
+    let order = document.getElementById('asc').checked ? 'asc' : 'desc';
 
-    // заполняем словарь
-    if (window.location.href.includes('?')) {
-        let params_array = window.location.href.split('?')[1].split('&');
-        for (let i = 0; i < params_array.length; i++) {
-            if (params_array[i].includes('rubric')) params_dict['rubric'] = params_array[i]; else
-            if (params_array[i].includes('sort')) params_dict['sort'] = params_array[i]; else
-            if (params_array[i].includes('order')) params_dict['order'] = params_array[i]; else
-            if (params_array[i].includes('page')) params_dict['page'] = params_array[i];
-        }
-    }
-
-    // console.log(params_dict['rubric'])
-    // console.log(params_dict['sort'])
-    // console.log(params_dict['order'])
-    // console.log(params_dict['page'])
+    params.sort = sort;
+    params.order = order;
 
     let href = '/?';
 
-    for (const[param, value] of Object.entries(params_dict)) {
-        if (value) href += value + '&';
+    for (const[param, value] of Object.entries(params)) {
+        href += param + '=' + value + '&';
     }
-    href[href.length - 1] = '';
 
     sort_btn.setAttribute('href', href);
 }
