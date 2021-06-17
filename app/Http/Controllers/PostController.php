@@ -57,15 +57,15 @@ class PostController extends Controller
                     switch ($request->get('sort')) {
                         case 'date':
                             $sort = 'created_at';
-                            $posts = Post::where('rubric_id', '=', $rubric_id)->orderBy($sort, $order)->paginate(6);
+                            $posts = Post::where('rubric_id', '=', $rubric_id)->orderBy($sort, $order)->paginate(6)->withQueryString();
                             break;
                         case 'popularity':
-                            $posts = Post::where('rubric_id', '=', $rubric_id)->withCount('likes')->orderBy('likes_count', $order)->paginate(6);
+                            $posts = Post::where('rubric_id', '=', $rubric_id)->withCount('likes')->orderBy('likes_count', $order)->paginate(6)->withQueryString();
                             break;
                     }
                 // если правил сортировки нет
                 } else {
-                    $posts = Post::where('rubric_id', '=', $rubric_id)->orderBy('created_at', 'desc')->paginate(6);
+                    $posts = Post::where('rubric_id', '=', $rubric_id)->orderBy('created_at', 'desc')->paginate(6)->withQueryString();
                 }
             // если ключа rubric нет
             } else {
@@ -76,7 +76,7 @@ class PostController extends Controller
                         $posts = Post::orderBy($sort, $order)->paginate(6);
                         break;
                     case 'popularity':
-                        $posts = Post::withCount('likes')->orderBy('likes_count', $order)->paginate(6);
+                        $posts = Post::withCount('likes')->orderBy('likes_count', $order)->paginate(6)->withQueryString();
                         break;
                 }
             }
