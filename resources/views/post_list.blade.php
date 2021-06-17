@@ -74,7 +74,7 @@
                         <input onclick="setSortParam()" type="radio" class="btn-check" name="order" id="desc" autocomplete="off" checked>
                         <label class="btn btn-outline-primary" for="desc">Убывание</label>
                     </div>
-                    <a href="@if(str_contains(Request::fullUrl(), '?'))&sort=date&order=desc @else?sort=date&order=desc @endif" id="sort" class="btn btn-primary">Сортировать</a>
+                    <a href="" id="sort" class="btn btn-primary">Сортировать</a>
                 </div>
             </div>
 
